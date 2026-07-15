@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portofolio Saya - MPLS 2026</title>
+    <style>
+        /* ---------- RESET & GLOBAL ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        body {
+            background: #f1f5f9;
+            color: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 30px 20px;
+        }
+
+        /* ---------- TEMA GELAP (aktif via JS) ---------- */
+        body.dark-mode {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .container {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        body.dark-mode .card {
+            background: #0f172a;
+            border-color: #334155;
+        }
+
+        body.dark-mode .hobi-item {
+            background: #1e293b;
+            border-color: #475569;
+        }
+
+        body.dark-mode .btn-toggle {
+            background: #334155;
+            color: #fbbf24;
+            border-color: #475569;
+        }
+
+        /* ---------- CONTAINER ---------- */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 40px;
+            padding: 35px 30px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        /* ---------- TOMBOL DARK MODE ---------- */
+        .theme-toggle-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+
+        .btn-toggle {
+            background: #e2e8f0;
+            border: none;
+            border-radius: 60px;
+            padding: 8px 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            color: #1e293b;
+            border: 1px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-toggle:hover {
+            background: #cbd5e1;
+        }
+
+        /* ---------- HEADER / HERO ---------- */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .avatar-wrapper {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            padding: 5px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ffffff;
+            background: #fff;
+        }
+
+        /* Kalo gak pake foto, pake emoji */
+        .avatar-emoji {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .badge {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 6px 20px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 6px;
+            display: inline-block;
+        }
+
+        body.dark-mode .hero .badge {
+            background: #1e293b;
+            color: #93c5fd;
+        }
+
+        .hero .typing-text {
+            font-size: 1.2rem;
+            color: #475569;
+            margin-top: 8px;
+            min-height: 2em;
+        }
+
+        body.dark-mode .hero .typing-text {
+            color: #94a3b8;
+        }
+
+        /* ---------- SECTION UMUM ---------- */
+        .section {
+            margin-top: 35px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 3px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        body.dark-mode .section-title {
+            border-bottom-color: #334155;
+        }
+
+        .section-title span {
+            background: #2563eb;
+            color: #fff;
+            font-size: 1rem;
+            padding: 0 14px;
+            border-radius: 30px;
+        }
+
+        /* ---------- ABOUT ---------- */
+        .about-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #1e293b;
+            background: #f8fafc;
+            padding: 20px 24px;
+            border-radius: 20px;
+            border-left: 6px solid #3b82f6;
+        }
+
+        body.dark-mode .about-text {
+            background: #0f172a;
+            color: #cbd5e1;
+            border-left-color: #8b5cf6;
+        }
+
+        /* ---------- HOBI (GRID) ---------- */
+        .hobi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            margin-top: 5px;
+        }
+
+        .hobi-item {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 18px 10px;
+            text-align: center;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .hobi-item:hover {
+            transform: translateY(-6px);
+            border-color: #3b82f6;
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+        }
+
+        .hobi-item .icon {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        body.dark-mode .hobi-item {
+            background: #1e293b;
+            border-color: #334155;
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .hobi-item:hover {
+            border-color: #8b5cf6;
+        }
+
+        /* ---------- MOTTO & CITA-CITA ---------- */
+        .motto-box {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: #fff;
+            padding: 24px 28px;
+            border-radius: 24px;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .motto-box .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.8;
+        }
+
+        .motto-box blockquote {
+            font-size: 1.6rem;
+            font-weight: 700;
+            font-style: italic;
+            margin: 10px 0 4px 0;
+        }
+
+        .motto-box .author {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .fact-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        body.dark-mode .fact-card {
+            background: #0f172a;
+            border-color: #334155;
+        }
+
+        .fact-card .number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #3b82f6;
+        }
+
+        body.dark-mode .fact-card .number {
+            color: #93c5fd;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+
+        body.dark-mode .footer {
+            border-top-color: #334155;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 500px) {
+            .container {
+                padding: 20px 16px;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .facts-grid {
+                grid-template-columns: 1fr;
+            }
+            .motto-box blockquote {
+                font-size: 1.2rem;
+            }
+            .hobi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== TOMBOL DARK MODE ===== -->
+        <div class="theme-toggle-wrapper">
+            <button class="btn-toggle" onclick="toggleMode()" id="themeBtn">
+                🌙 Mode Gelap
+            </button>
+        </div>
+
+        <!-- ===== HERO / PERKENALAN ===== -->
+        <div class="hero">
+            <div class="avatar-wrapper"><img src="FOTOMPLS.jpg" alt="Foto Saya" /></div>
+
+            <h1 id="namaDisplay">Radyas Abdul Ghani Rahman</h1>
+            <span class="badge">🚀 Calon Siswa MPLS 2026 SMK PMB</span>
+
+            <p class="typing-text" id="typingText"></p>
+        </div>
+
+        <!-- ===== ABOUT ME ===== -->
+        <div class="section">
+            <div class="section-title">
+                <span>👤</span> Tentang Saya
+            </div>
+            <div class="about-text" id="aboutDisplay">
+                <!-- GANTI SINI: Cerita tentang elo -->
+                Halo! Saya <strong>Radyas Abdul Ghani Rahman</strong>, lahir di BOGOR, 03 FEBRUARI 2011. 
+                Saya adalah pribadi yang <strong>disiplin, kreatif, dan suka tantangan</strong>. 
+                Saya percaya bahwa masa depan dibangun dari kebiasaan kecil hari ini. 
+                Saya sangat antusias untuk bergabung di SMK PUTRA MANDIRI BANGSA dan bertemu teman-teman baru!
+            </div>
+        </div>
+
+        <!-- ===== HOBI ===== -->
+        <div class="section">
+            <div class="section-title">
+                <span>⚡</span> Hobi & Minat
+            </div>
+            <div class="hobi-grid" id="hobiGrid">
+                <!-- GANTI SINI: Ganti ikon & nama hobi sesuai elo -->
+                <div class="hobi-item"><span class="icon">🎮</span> Game</div>
+                <div class="hobi-item"><span class="icon">🎵</span> Musik</div>
+                <div class="hobi-item"><span class="icon">💻</span> Coding</div>
+            </div>
+        </div>
+
+        <!-- ===== MOTTO & CITA-CITA ===== -->
+        <div class="section">
+            <div class="section-title">
+                <span>💡</span> Motto & Cita-cita
+            </div>
+            <div class="motto-box">
+                <div class="label">📌 Motto Hidup</div>
+                <blockquote id="mottoDisplay">
+                    <!-- GANTI SINI: Motto elo -->
+                    "SUKSES ADALAH SEBUAH USAHA,BUKAN SEBUAH KEAJAIBAN."
+                </blockquote>
+                <div class="author" id="mottoAuthor">— Radyas Abdul Ghani Rahman</div>
+            </div>
+
+            <!-- Fakta Unik / Cita-cita -->
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <div class="number">🌟</div>
+                    <div style="font-weight:600;" id="citaDisplay">CYBER SECURITY & BUSSINESS MAN</div>
+                    <div style="font-size:0.8rem; color:#94a3b8;">Cita-cita</div>
+                </div>
+                <div class="fact-card">
+                    <div class="number">🎯</div>
+                    <div style="font-weight:600;" id="unikDisplay">Suka banget makan UDANG</div>
+                    <div style="font-size:0.8rem; color:#94a3b8;">Fakta Unik</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="footer">
+            &copy; <span id="year"></span> • Perkenalan MPLS • SMK PUTRA MANDIRI BANGSA
+        </div>
+
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- =============== JAVASCRIPT =============================== -->
+    <!-- ========================================================= -->
+    <script>
+        // ----- 1. DARK MODE TOGGLE -----
+        function toggleMode() {
+            const body = document.body;
+            const btn = document.getElementById('themeBtn');
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                btn.innerHTML = '☀️ Mode Terang';
+            } else {
+                btn.innerHTML = '🌙 Mode Gelap';
+            }
+        }
+
+        // ----- 2. TYPING EFFECT (Otomatis) -----
+        const teksKetik = [
+            'Siswa baru yang siap berkarya ✨',
+            'Hobi saya BERMAIN GAME & NGODING 🎨',
+            'Salam kenal semua! 👋'
+        ];
+
+        let indexTeks = 0;
+        let indexHuruf = 0;
+        let isMenghapus = false;
+        const typingElement = document.getElementById('typingText');
+
+        function typeEffect() {
+            const currentText = teksKetik[indexTeks];
+            if (isMenghapus) {
+                typingElement.textContent = currentText.substring(0, indexHuruf - 1);
+                indexHuruf--;
+                if (indexHuruf === 0) {
+                    isMenghapus = false;
+                    indexTeks = (indexTeks + 1) % teksKetik.length;
+                    setTimeout(typeEffect, 800);
+                    return;
+                }
+                setTimeout(typeEffect, 50);
+            } else {
+                typingElement.textContent = currentText.substring(0, indexHuruf + 1);
+                indexHuruf++;
+                if (indexHuruf === currentText.length) {
+                    isMenghapus = true;
+                    setTimeout(typeEffect, 2000);
+                    return;
+                }
+                setTimeout(typeEffect, 80);
+            }
+        }
+
+        // Jalankan efek typing pas halaman dimuat
+        window.onload = function() {
+            // Tahun otomatis di footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+            // Mulai ngetik
+            setTimeout(typeEffect, 500);
+        };
+
+    </script>
+
+</body>
+</html>
