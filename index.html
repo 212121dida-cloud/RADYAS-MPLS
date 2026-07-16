@@ -219,7 +219,9 @@
             margin-top: 5px;
         }
 
+        /* ===== UBAH: hobi-item jadi link ===== */
         .hobi-item {
+            display: block; /* biar full clickable */
             background: #f1f5f9;
             border: 1px solid #e2e8f0;
             border-radius: 18px;
@@ -227,6 +229,9 @@
             text-align: center;
             transition: 0.3s;
             font-weight: 600;
+            text-decoration: none; /* hilangin underline */
+            color: inherit; /* pake warna teks bawaan */
+            cursor: pointer;
         }
 
         .hobi-item:hover {
@@ -371,7 +376,6 @@
                 <span>👤</span> Tentang Saya
             </div>
             <div class="about-text" id="aboutDisplay">
-                <!-- GANTI SINI: Cerita tentang elo -->
                 Halo! Saya <strong>Radyas Abdul Ghani Rahman</strong>, lahir di BOGOR, 03 FEBRUARI 2011. 
                 Saya adalah pribadi yang <strong>disiplin, kreatif, dan suka tantangan</strong>. 
                 Saya percaya bahwa masa depan dibangun dari kebiasaan kecil hari ini. 
@@ -385,10 +389,19 @@
                 <span>⚡</span> Hobi & Minat
             </div>
             <div class="hobi-grid" id="hobiGrid">
-                <!-- GANTI SINI: Ganti ikon & nama hobi sesuai elo -->
-                <div class="hobi-item"><span class="icon">🎮</span> Game</div>
-                <div class="hobi-item"><span class="icon">🎵</span> Musik</div>
-                <div class="hobi-item"><span class="icon">💻</span> Coding</div>
+                <!-- 
+                    ===== INI YANG DIUBAH: SETIAP HOBI JADI LINK =====
+                    Ganti href dengan URL tujuan elu.
+                -->
+                <a href="https://store.steampowered.com/" target="_blank" class="hobi-item">
+                    <span class="icon">🎮</span> Game
+                </a>
+                <a href="https://open.spotify.com/" target="_blank" class="hobi-item">
+                    <span class="icon">🎵</span> Musik
+                </a>
+                <a href="https://github.com/" target="_blank" class="hobi-item">
+                    <span class="icon">💻</span> Coding
+                </a>
             </div>
         </div>
 
@@ -400,7 +413,6 @@
             <div class="motto-box">
                 <div class="label">📌 Motto Hidup</div>
                 <blockquote id="mottoDisplay">
-                    <!-- GANTI SINI: Motto elo -->
                     "SUKSES ADALAH SEBUAH USAHA,BUKAN SEBUAH KEAJAIBAN."
                 </blockquote>
                 <div class="author" id="mottoAuthor">— Radyas Abdul Ghani Rahman</div>
@@ -483,12 +495,9 @@
 
         // Jalankan efek typing pas halaman dimuat
         window.onload = function() {
-            // Tahun otomatis di footer
             document.getElementById('year').textContent = new Date().getFullYear();
-            // Mulai ngetik
             setTimeout(typeEffect, 500);
         };
-
     </script>
 
 </body>
